@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Memz Game</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: black;
+      color: white;
+      font-family: 'Comic Sans MS', sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #welcome-screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #welcome-screen h2 {
+      font-size: 2em;
+      color: #0ff;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    #main-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(45deg, #0ff, #f0f, #0f0, #ff0);
+      background-size: 400% 400%;
+      animation: bgAnim 10s infinite alternate;
+    }
+
+    @keyframes bgAnim {
+      0% {background-position: 0% 50%;}
+      100% {background-position: 100% 50%;}
+    }
+
+    #logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    #start-btn {
+      margin-top: 30px;
+      font-size: 1.5em;
+      padding: 20px 40px;
+      border: none;
+      background: red;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="welcome-screen" onclick="iniciar()">
+    <h2>Toque para começar</h2>
+  </div>
+
+  <div id="main-screen">
+    <h1>🌈 Memz Game 🌈</h1>
+    <img id="logo" src="logo.png" alt="Logo Memz">
+    <button id="start-btn" onclick="startGame()">Start</button>
+  </div>
+
+  <audio id="nyan" src="musica-fofa.mp3" loop></audio>
+
+  <script>
+    function iniciar() {
+      document.getElementById("welcome-screen").style.display = "none";
+      document.getElementById("main-screen").style.display = "flex";
+      document.getElementById("nyan").play();
+    }
+
+    function startGame() {
+      window.location.href = "mark.html";
+    }
+  </script>
+
+</body>
+</html>
