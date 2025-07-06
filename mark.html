@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Zuckerberg</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: red;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('zuck-feliz.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2em;
+      text-shadow: 2px 2px 10px black;
+    }
+    #contador {
+      font-size: 4em;
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    #jumpscare {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: flash 0.1s infinite;
+    }
+    #jumpscare img {
+      width: 100%;
+      max-width: 600px;
+    }
+    @keyframes flash {
+      0% { background-color: black; }
+      50% { background-color: white; }
+      100% { background-color: black; }
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <h1>Mark Zuckerberg está se aproximando de você</h1>
+  <div id="contador">200m</div>
+</div>
+
+<div id="jumpscare">
+  <img src="zuck-jumpscare.png" alt="Jumpscare">
+  <audio id="sirene" src="sirene.mp3"></audio>
+</div>
+
+<audio id="distorcido" src="distorcido.mp3" autoplay loop></audio>
+
+<script>
+  let metros = 200;
+  const contador = document.getElementById("contador");
+  const intervalo = setInterval(() => {
+    metros -= 5;
+    contador.textContent = metros + "m";
+    if (metros <= 0) {
+      clearInterval(intervalo);
+      document.getElementById("jumpscare").style.display = "flex";
+      document.getElementById("sirene").play();
+    }
+  }, 200);
+</script>
+</body>
+</html>
